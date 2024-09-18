@@ -95,3 +95,4 @@ if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
     zipped_zero_df = add_zero_to_zipcode(df)
     zipcode_df = filter_by_zipcode(zipped_zero_df)
+    display_df(view_df=zipcode_df)
