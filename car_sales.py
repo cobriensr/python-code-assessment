@@ -13,9 +13,10 @@ def display_df(view_df: pd.DataFrame) -> None:
     Args:
         view_df (pd.DataFrame): pandas dataframe
     """
+    # Convert the dataframe to a list of lists
     data = view_df.values.tolist()
     header_list = view_df.columns.tolist()
-
+    # Create the layout
     layout = [
         [sg.Table(values=data,
             headings=header_list,
@@ -23,9 +24,11 @@ def display_df(view_df: pd.DataFrame) -> None:
             auto_size_columns=True,
             num_rows=min(25, len(view_df)))]
     ]
-
+    # Create the window
     window = sg.Window('DataFrame Viewer', layout, resizable=True)
+    # Read the window
     _, _ = window.read()
+    # Close the window
     window.close()
 
 # Import csv file with pandas
@@ -98,14 +101,15 @@ def calculate_price_differences(prices_df: pd.DataFrame) -> dict[float]:
     # Calculate the price difference
     prices_df['price_difference'] = prices_df['Resell Price'] - prices_df['Sale Price']
     
-    # Calculate regular average and median
+    # Calculate regular average and median prices
     avg_diff = prices_df['price_difference'].mean()
     median_diff = prices_df['price_difference'].median()
     
-    # Calculate absolute value average and median
+    # Calculate absolute value average and median prices
     abs_avg_diff = prices_df['price_difference'].abs().mean()
     abs_median_diff = prices_df['price_difference'].abs().median()
-    
+
+    # return the results
     return {
         'Average Price Change': [avg_diff],
         'Median Price Change': [median_diff],
@@ -113,6 +117,7 @@ def calculate_price_differences(prices_df: pd.DataFrame) -> dict[float]:
         'Median Absolute Price Change': [abs_median_diff],
     }
 
+# print results into a output table
 def print_results(analysis_results: dict[float]) -> None:
     """
     Print the results of the price change analysis
@@ -120,11 +125,21 @@ def print_results(analysis_results: dict[float]) -> None:
     Args:
         results (dict[float]): The price change analysis data
     """
-    print("\nPrice Change Analysis:")
-    print(f"Average Price Change: ${analysis_results['Average Price Change'][0]:,.2f}")
-    print(f"Median Price Change: ${analysis_results['Median Price Change'][0]:,.2f}")
-    print(f"Average Absolute Price Change: ${analysis_results['Average Absolute Price Change'][0]:,.2f}")
-    print(f"Median Absolute Price Change: ${analysis_results['Median Absolute Price Change'][0]:,.2f}")
+    # Find the average change, median change, average absolute change, and median absolute change
+    avg_change = analysis_results['Average Price Change'][0]
+    median_change = analysis_results['Median Price Change'][0]
+    avg_abs_change = analysis_results['Average Absolute Price Change'][0]
+    median_abs_change = analysis_results['Median Absolute Price Change'][0]
+    
+    # Print the results
+    print("\n" + "=" * 60)
+    print("                Price Difference Analysis                ")
+    print("=" * 60)
+    print(f"Average:            ${avg_change:>13,.2f}")
+    print(f"Median:             ${median_change:>13,.2f}")
+    print(f"Average Absolute:   ${avg_abs_change:>13,.2f}")
+    print(f"Median Absolute:    ${median_abs_change:>13,.2f}")
+    print("=" * 60)
 
 if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
