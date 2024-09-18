@@ -82,6 +82,15 @@ def filter_by_zipcode(unfiltered_df: pd.DataFrame) -> pd.DataFrame:
     # return the filtered dataframe
     return filtered_df
 
+# Calculate price differences
+# For each car sale in these zip codes, we need to know the original sale price and the resale price
+# Calculate the difference: Resale price - Original sale price
+# Find the average of these differences
+# Sum all the price differences and divide by the number of car sales
+# Find the median of these differences
+# Arrange all price differences in order and find the middle value
+# Round both results to 2 decimal places
+
 if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
     zipped_zero_df = add_zero_to_zipcode(df)
