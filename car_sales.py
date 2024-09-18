@@ -40,5 +40,26 @@ def import_csv(csv_path: str) -> pd.DataFrame:
     # Return the dataframe
     return pd.read_csv(csv_path)
 
+# Add 0 to the beginning of the zip code until it is 5 characters long
+def add_zero_to_zipcode(missing_digit_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Add 0 to the beginning of the zip code until it is 5 characters long
+
+    Args:
+        df (pd.DataFrame): The dataframe containing the csv data
+
+    Returns:
+        pd.DataFrame: The dataframe with the zip code formatted
+    """
+    # copy dataframe to avoid modifying the original
+    zipped_df = missing_digit_df.copy()
+    # convert zipcode to string
+    zipped_df['zipcode'] = zipped_df['zipcode'].astype(str)
+    # add 0 to the beginning of the zip code until it is 5 characters long
+    zipped_df['zipcode'] = zipped_df['zipcode'].apply(lambda x: x.zfill(5))
+    # return the formatted dataframe
+    return zipped_df
+
 if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
+    zipped_zero_df = add_zero_to_zipcode(df)
