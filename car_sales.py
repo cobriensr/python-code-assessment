@@ -60,6 +60,29 @@ def add_zero_to_zipcode(missing_digit_df: pd.DataFrame) -> pd.DataFrame:
     # return the formatted dataframe
     return zipped_df
 
+# Filter car sales by zip code
+def filter_by_zipcode(unfiltered_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Filter car sales by zip code where the first two digits are between 00 and 19.
+
+    Args:
+        df (pd.DataFrame): The dataframe containing the csv data
+
+    Returns:
+        pd.DataFrame: The filtered dataframe
+    """
+    # copy dataframe to avoid modifying the original
+    filtered_df = unfiltered_df.copy()
+    # convert zipcode to string
+    filtered_df['zipcode'] = filtered_df['zipcode'].astype(str)
+    # filter by zip code on first 2 digits
+    filtered_df = filtered_df[filtered_df['zipcode'].str[:2].between('00', '19')]
+    # sort the dataframe by zip code in ascending order
+    filtered_df = filtered_df.sort_values(by='zipcode')
+    # return the filtered dataframe
+    return filtered_df
+
 if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
     zipped_zero_df = add_zero_to_zipcode(df)
+    zipcode_df = filter_by_zipcode(zipped_zero_df)
