@@ -3,6 +3,8 @@
 import pandas as pd
 import PySimpleGUI as sg
 
+# pylint: disable=line-too-long
+
 # View dataframe in a viewer window
 def display_df(view_df: pd.DataFrame) -> None:
     """
@@ -82,9 +84,26 @@ def filter_by_zipcode(unfiltered_df: pd.DataFrame) -> pd.DataFrame:
     # return the filtered dataframe
     return filtered_df
 
-# Calculate price differences
-# For each car sale in these zip codes, we need to know the original sale price and the resale price
-# Calculate the difference: Resale price - Original sale price
+# Calculate the difference: Resale price - Original sale price in new column called price_difference
+def calculate_differences(difference_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Calculate price differences for each car sale in these zip codes, we need to know the original sale price and the resale price
+
+    Args:
+        df (pd.DataFrame): The dataframe containing the csv data
+
+    Returns:
+        pd.DataFrame: The dataframe with the price differences calculated
+    """
+    # copy dataframe to avoid modifying the original
+    price_df = difference_df.copy()
+    # create new column called price_difference
+    price_df['price_difference'] = pd.Series(dtype='float64')
+    # calculate the absolute difference: Resale price - Original sale price and round to 2 digits
+    price_df['price_difference'] = abs(round(price_df['Sale Price'] - price_df['Resell Price'], 2))
+    # return the dataframe with the price differences calculated
+    return price_df
+
 # Find the average of these differences
 # Sum all the price differences and divide by the number of car sales
 # Find the median of these differences
@@ -95,4 +114,5 @@ if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
     zipped_zero_df = add_zero_to_zipcode(df)
     zipcode_df = filter_by_zipcode(zipped_zero_df)
-    display_df(view_df=zipcode_df)
+    diff_df = calculate_differences(zipcode_df)
+    display_df(view_df=diff_df)
