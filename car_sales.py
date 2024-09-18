@@ -25,3 +25,20 @@ def display_df(view_df: pd.DataFrame) -> None:
     window = sg.Window('DataFrame Viewer', layout, resizable=True)
     _, _ = window.read()
     window.close()
+
+# Import csv file with pandas
+def import_csv(csv_path: str) -> pd.DataFrame:
+    """
+    Import csv file into a pandas dataframe and make it globally available
+    
+    Args:
+    csv_path (str): The path to the csv file
+    
+    Returns:
+    pd.DataFrame: The dataframe containing the csv data
+    """
+    # Return the dataframe
+    return pd.read_csv(csv_path)
+
+if __name__ == "__main__":
+    df = import_csv('car_sales_dataset.csv')
