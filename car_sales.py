@@ -3,7 +3,7 @@
 import pandas as pd
 import PySimpleGUI as sg
 
-# pylint: disable=line-too-long
+# pylint: disable=line-too-long, trailing-whitespace, trailing-newlines
 
 # View dataframe in a viewer window
 def display_df(view_df: pd.DataFrame) -> None:
@@ -85,34 +85,51 @@ def filter_by_zipcode(unfiltered_df: pd.DataFrame) -> pd.DataFrame:
     return filtered_df
 
 # Calculate the difference: Resale price - Original sale price in new column called price_difference
-def calculate_differences(difference_df: pd.DataFrame) -> pd.DataFrame:
+def calculate_price_differences(prices_df: pd.DataFrame) -> dict[float]:
     """
-    Calculate price differences for each car sale in these zip codes, we need to know the original sale price and the resale price
+    Calculate the average and median price differences
 
     Args:
-        df (pd.DataFrame): The dataframe containing the csv data
+        df (pd.DataFrame): The dataframe
 
     Returns:
-        pd.DataFrame: The dataframe with the price differences calculated
+        dict[float]: _description_
     """
-    # copy dataframe to avoid modifying the original
-    price_df = difference_df.copy()
-    # create new column called price_difference
-    price_df['price_difference'] = pd.Series(dtype='float64')
-    # calculate the absolute difference: Resale price - Original sale price and round to 2 digits
-    price_df['price_difference'] = abs(round(price_df['Sale Price'] - price_df['Resell Price'], 2))
-    # return the dataframe with the price differences calculated
-    return price_df
+    # Calculate the price difference
+    prices_df['price_difference'] = prices_df['Resell Price'] - prices_df['Sale Price']
+    
+    # Calculate regular average and median
+    avg_diff = prices_df['price_difference'].mean()
+    median_diff = prices_df['price_difference'].median()
+    
+    # Calculate absolute value average and median
+    abs_avg_diff = prices_df['price_difference'].abs().mean()
+    abs_median_diff = prices_df['price_difference'].abs().median()
+    
+    return {
+        'Average Price Change': [avg_diff],
+        'Median Price Change': [median_diff],
+        'Average Absolute Price Change': [abs_avg_diff],
+        'Median Absolute Price Change': [abs_median_diff],
+    }
 
-# Find the average of these differences
-# Sum all the price differences and divide by the number of car sales
-# Find the median of these differences
-# Arrange all price differences in order and find the middle value
-# Round both results to 2 decimal places
+def print_results(analysis_results: dict[float]) -> None:
+    """
+    Print the results of the price change analysis
+
+    Args:
+        results (dict[float]): The price change analysis data
+    """
+    print("\nPrice Change Analysis:")
+    print(f"Average Price Change: ${analysis_results['Average Price Change'][0]:,.2f}")
+    print(f"Median Price Change: ${analysis_results['Median Price Change'][0]:,.2f}")
+    print(f"Average Absolute Price Change: ${analysis_results['Average Absolute Price Change'][0]:,.2f}")
+    print(f"Median Absolute Price Change: ${analysis_results['Median Absolute Price Change'][0]:,.2f}")
 
 if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
     zipped_zero_df = add_zero_to_zipcode(df)
     zipcode_df = filter_by_zipcode(zipped_zero_df)
-    diff_df = calculate_differences(zipcode_df)
-    display_df(view_df=diff_df)
+    results = calculate_price_differences(zipcode_df)
+    print_results(results)
+
