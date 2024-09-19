@@ -4,6 +4,7 @@ import pandas as pd
 
 # pylint: disable=line-too-long, trailing-whitespace, trailing-newlines, missing-final-newline, singleton-comparison
 
+
 # Import csv file with pandas
 def import_csv(csv_path: str) -> pd.DataFrame:
     """
