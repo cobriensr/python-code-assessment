@@ -11,7 +11,7 @@ The focus should be on accurately reading and manipulating the data so that each
 Please read through each of the questions below and implement the functionality to answer them according to their requirements.
 The code design is entirely up to you as long as the solution can be run via a python3 command (see [Additional Sections](#additional-sections)). We also ask that you commit your work to git frequently as you go.
 
-### Evaluation Criteria
+## Evaluation Criteria
 
 As there are often trade-offs when crafting a solution, the following is the priority of what we are considering when reviewing your kata:
 
@@ -20,7 +20,7 @@ As there are often trade-offs when crafting a solution, the following is the pri
 * Structure: Well-factored code is easier to reason about and maintain. We prefer to see good separation of concerns in the architecture.
 * Idiomatic code: Along similar lines, code that adopts the best practices, idiom and conventions of the language/framework helps with readability and maintainability.
 
-### Additional Sections
+## Additional Sections
 
 These sections will help us understand your thought process and workflow while we review your solution. Feel free to add these sections to this README or in a separate file.
 
@@ -89,6 +89,34 @@ e.g.
 ```
 
 While there's freedom in the UI, we ask that it's command line centric with a good explanation of usage.  The focus of this kata is more on the quality of the code, its architecture, and the accuracy of the answers.
+
+## Technical Decision Making
+
+In designing this solution, several technical decisions were made at various levels to ensure an efficient, maintainable, and high-quality codebase. The key considerations and trade-offs are outlined below:
+
+### Technology Stack
+
+* **Language**: Python was chosen as the primary language for this project due to its strong support for data manipulation, CSV parsing, and light ETL (Extract, Transform, Load) tasks. Python's simplicity, extensive ecosystem, and wide adoption make it an ideal choice for this type of work.
+
+### Libraries
+
+* **pandas**: The pandas library was selected for CSV file parsing, data cleaning, and data transformation. Pandas provides a powerful and intuitive interface for working with structured data, making it easy to load, manipulate, and analyze CSV files. While other options like the built-in `csv` module were also used, overall pandas offers a more feature-rich and efficient solution.
+
+* **pytest**, **pytest-cov**, **pytest-html**: For testing and generating coverage reports, the pytest framework was chosen along with the pytest-cov and pytest-html plugins. Pytest provides a simple and flexible testing framework that integrates well with other tools. The pytest-cov plugin enables generating coverage reports to ensure comprehensive test coverage, while pytest-html allows generating HTML test reports for better visualization and reporting.
+
+* **mypy**: To enhance code quality and catch potential type-related issues early, mypy was used for static type checking. By annotating function signatures and variables with type hints, mypy can perform static analysis and identify type inconsistencies. This helps improve code reliability and maintainability.
+
+* **black**: Black was selected as the code formatter to enforce a consistent code style throughout the project. It eliminates the need for manual formatting decisions and ensures that the codebase adheres to a standardized style, improving readability and collaboration.
+
+* **pylint** and **sonarlint**: For code linting and static code analysis, pylint and sonarlint were employed. These tools help identify potential issues, code smells, and style violations, promoting code quality and maintainability. They provide valuable insights and suggestions for improving the codebase.
+
+### Design Decisions
+
+* **CSV Data File Placement**: The decision was made to keep the CSV data file in the project's root directory for simplicity and ease of access. This allows the file to be easily imported and used across different parts of the application. While alternative approaches like storing the file in a separate data directory were considered, the current placement strikes a balance between simplicity and organization.
+
+* **Package Management**: Poetry was chosen as the package management and dependency resolution tool. Poetry simplifies the process of managing project dependencies, creating virtual environments, and building distributions. It provides a declarative approach to specifying dependencies and ensures reproducible builds across different environments.
+
+These technical decisions were made considering factors such as ease of use, maintainability, code quality, and alignment with the project's requirements. The combination of Python, pandas, pytest, mypy, black, pylint, and sonarlint enables efficient development, comprehensive testing, and high code quality. The design choices, such as keeping the CSV data file in the root directory and using Poetry for package management, contribute to a straightforward and organized project structure.
 
 ## Running your code
 
