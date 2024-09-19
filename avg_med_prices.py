@@ -135,10 +135,10 @@ def print_results(analysis_results: dict[float]) -> None:
     print("\n" + "=" * 60)
     print("                Price Difference Analysis                ")
     print("=" * 60)
-    print(f"Average:            ${avg_change:>13,.2f}")
-    print(f"Median:             ${median_change:>13,.2f}")
-    print(f"Average Absolute:   ${avg_abs_change:>13,.2f}")
-    print(f"Median Absolute:    ${median_abs_change:>13,.2f}")
+    print(f"Average:            ${avg_change:>13.2f}")
+    print(f"Median:             ${median_change:>13.2f}")
+    print(f"Average Absolute:   ${avg_abs_change:>13.2f}")
+    print(f"Median Absolute:    ${median_abs_change:>13.2f}")
     print("=" * 60)
 
 if __name__ == "__main__":
