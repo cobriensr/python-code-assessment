@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-kata-main"
+name = "python_kata_main"
 version = "0.1.0"
 description = "Technical Assessment Using Car Sales"
 authors = ["cobriensr <charles.a.obrien@outlook.com>"]
