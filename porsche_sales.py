@@ -123,9 +123,8 @@ def print_results(new_df: pd.DataFrame) -> None:
     print("=" * 55)
     for _, row in new_df.iterrows():
         formatted_date = row['Depreciated Date'].strftime('%Y-%m-%d')
-        formatted_value = f"${row['Depreciated Value']:,.2f}"
+        formatted_value = f"${row['Depreciated Value']:.2f}"
         print(f"{formatted_date:<25} {formatted_value:<25}")
-        print("-" * 55)
 
 if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
