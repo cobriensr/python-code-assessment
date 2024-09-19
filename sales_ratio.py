@@ -103,9 +103,9 @@ def print_top_10(ratio_top_10_df: pd.DataFrame) -> None:
     formatted_df['Sale Price'] = formatted_df['Sale Price'].apply(lambda x: f"${x:.2f}")
     
     print("\nTop 10 Cars by Price to Speed Ratio:")
-    print("=" * 50)
-    print(formatted_df.to_string(index=False))
-    print("=" * 50)
+    print("=" * 60)
+    print(formatted_df.to_string(index=False, justify='left'))
+    print("=" * 60)
 
 if __name__ == "__main__":
     df = import_csv('car_sales_dataset.csv')
