@@ -3,7 +3,6 @@
 import tempfile
 import pandas as pd
 import pytest
-import faker
 from porsche_sales import (
     import_csv,
     filter_porsche,
@@ -13,10 +12,6 @@ from porsche_sales import (
 )
 
 # pylint: disable=line-too-long, missing-final-newline, line-too-long, redefined-outer-name
-
-# used to generate fake data for parameterized tests
-fake = faker.Faker()
-
 
 @pytest.fixture
 def sample_data() -> pd.DataFrame:

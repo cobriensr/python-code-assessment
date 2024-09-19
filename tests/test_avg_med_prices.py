@@ -3,7 +3,6 @@
 import tempfile
 import pandas as pd
 import pytest
-import faker
 from avg_med_prices import (
     add_zero_to_zipcode,
     calculate_price_differences,
@@ -13,10 +12,6 @@ from avg_med_prices import (
 )
 
 # pylint: disable=line-too-long, missing-final-newline, line-too-long
-
-# used to generate fake data for parameterized tests
-fake = faker.Faker()
-
 
 def test_import_csv() -> None:
     """
