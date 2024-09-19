@@ -7,6 +7,7 @@ from sales_ratio import import_csv, sales_ratio, set_top_10, print_top_10
 
 # pylint: disable=line-too-long, missing-final-newline, line-too-long, trailing-whitespace, redefined-outer-name
 
+
 @pytest.fixture
 def sample_data() -> pd.DataFrame:
     """

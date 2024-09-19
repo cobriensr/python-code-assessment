@@ -13,6 +13,7 @@ from avg_med_prices import (
 
 # pylint: disable=line-too-long, missing-final-newline, line-too-long
 
+
 def test_import_csv() -> None:
     """
     Test the import_csv function
@@ -24,7 +25,7 @@ def test_import_csv() -> None:
 
     # import the csv file
     df = import_csv(temp_csv_path)
-    
+
     # Check the output
     assert isinstance(df, pd.DataFrame)
     # Check the shape of the dataframe

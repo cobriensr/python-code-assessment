@@ -13,6 +13,7 @@ from porsche_sales import (
 
 # pylint: disable=line-too-long, missing-final-newline, line-too-long, redefined-outer-name
 
+
 @pytest.fixture
 def sample_data() -> pd.DataFrame:
     """
