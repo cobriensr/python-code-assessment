@@ -54,12 +54,15 @@ e.g.
 
 Note: All dates will be after 1940 up to present day.
 
-The equation to calculate depreciation is
+The equation to calculate depreciation is:
 
 ```math
-                t 
-A(t) = A'(1 - r)    , where A' is the initial purchase price, r is the depreciation rate, and t is the time in years.
+                 
+A(t) = A(1 - r)*t 
+
 ```
+
+Where A is the initial purchase price, r is the depreciation rate, and t is the time in years.
 
 
 e.g.
