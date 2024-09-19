@@ -69,20 +69,23 @@ def set_top_10(df_10: pd.DataFrame) -> pd.DataFrame:
 def print_top_10(ratio_top_10_df: pd.DataFrame) -> None:
     """
     Print the top 10 cars by price to speed ratio
-
     Args:
         ratio_top_10_df (pd.DataFrame): The dataframe containing the top 10 results
     """
     # Create a copy of the DataFrame to avoid modifying the original
     formatted_df = ratio_top_10_df.copy()
-
-    # Format the 'Sale Price' column to include the dollar sign and commas
+    
+    # Format the 'Sale Price' column to include the dollar sign without commas
     formatted_df["Sale Price"] = formatted_df["Sale Price"].apply(lambda x: f"${x:.2f}")
-
+    
+    # Print the top 10 cars by price to speed ratio
     print("\nTop 10 Cars by Price to Speed Ratio:")
     print("=" * 60)
-    print(formatted_df.to_string(index=False, justify="left"))
+    print(f"{'Sale Price':<15}{'Top Speed':<15}{'Ratio':<15}")
+    for _, row in formatted_df.iterrows():
+        print(f"{row['Sale Price']:<15}{row['Top Speed']:<15}{row['Ratio']:<15.3f}")
     print("=" * 60)
+
 
 
 if __name__ == "__main__":
