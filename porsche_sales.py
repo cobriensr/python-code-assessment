@@ -128,7 +128,10 @@ def print_results(new_df: pd.DataFrame) -> None:
     print(f"{'Depreciated Date':<25} {'Depreciated Value':<25}")
     print("=" * 55)
     for _, row in new_df.iterrows():
-        formatted_date = row["Depreciated Date"].strftime("%Y-%m-%d")
+        if isinstance(row["Depreciated Date"], str):
+            formatted_date = row["Depreciated Date"]
+        else:
+            formatted_date = row["Depreciated Date"].strftime("%Y-%m-%d")
         formatted_value = f"${row['Depreciated Value']:.2f}"
         print(f"{formatted_date:<25} {formatted_value:<25}")
 
