@@ -144,9 +144,9 @@ Because of this, we ask that you include detailed instructions on how to both ru
 1. Activate the virtual environment created by Poetry:
    1. ```poetry shell```
 2. Run the Python files:
-   1. ```poetry run avg_med_prices.py```
-   2. ```poetry run porsche_sales.py```
-   3. ```poetry run sales_ratio.py```
+   1. ```poetry run python avg_med_prices.py```
+   2. ```poetry run python porsche_sales.py```
+   3. ```poetry run python top_10_sales_ratio.py```
 
 ## Running Tests
 
@@ -154,13 +154,13 @@ This project uses [pytest](https://docs.pytest.org/) for testing. To run the tes
 
 1. Make sure you have activated the virtual environment:
    1. ```poetry shell```
-2. Run the tests using the `pytest` command
+2. Run the tests using the `python -m pytest` command
 3. This will discover and run all the test files in your project directory and its subdirectories.
 4. If you want to run tests with coverage, you can use the `--cov` option:
-   1. ```pytest --cov=your_package_name```
+   1. ```python -m pytest --cov=your_package_name```
 5. Replace `your_package_name` with the name of your Python package or module that you want to measure coverage for.
 6. To generate a coverage report, you can add the `--cov-report` option:
-   1. ```pytest --cov=your_package_name --cov-report=html --self-contained-html test_file.py```
+   1. ```python -m pytest --cov=your_package_name --cov-report=html --self-contained-html test_file.py```
       1. Replace ```test_file.py``` with the name of the particular test file to run and make sure that the ```--cov=your_package_name``` matches the module of the file you are trying to test
 7. This will generate an HTML coverage report in the `htmlcov` directory.
 
