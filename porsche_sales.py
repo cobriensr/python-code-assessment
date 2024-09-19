@@ -36,7 +36,7 @@ def filter_porsche(filter_df: pd.DataFrame) -> pd.DataFrame:
 
 
 # Calculate the Depreciation:
-def calculate_depreciation(initial_price, years, annual_rate) -> float:
+def calculate_depreciation(initial_price: float, years: int, annual_rate: float) -> float:
     """
     Calculate the depreciated value after a certain number of years.
 
