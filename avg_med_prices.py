@@ -1,6 +1,8 @@
 """Used Car Sales Technical Assessment"""
 
+from typing import Any
 import pandas as pd
+
 
 # pylint: disable=line-too-long, trailing-whitespace, trailing-newlines
 
@@ -65,7 +67,7 @@ def filter_by_zipcode(unfiltered_df: pd.DataFrame) -> pd.DataFrame:
 
 
 # Calculate the difference: Resale price - Original sale price in new column called price_difference
-def calculate_price_differences(prices_df: pd.DataFrame) -> dict[float]:
+def calculate_price_differences(prices_df: pd.DataFrame) -> dict[str, list[Any]]:
     """
     Calculate the average and median price differences
 
@@ -96,7 +98,7 @@ def calculate_price_differences(prices_df: pd.DataFrame) -> dict[float]:
 
 
 # print results into a output table
-def print_results(analysis_results: dict[float]) -> None:
+def print_results(analysis_results: dict[str, list[Any]]) -> None:
     """
     Print the results of the price change analysis
 
