@@ -1,4 +1,4 @@
-# Beam Technical Assessment
+# Technical Assessment
 
 ## Technical Decision Making
 
